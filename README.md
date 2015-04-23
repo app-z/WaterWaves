@@ -4,6 +4,9 @@ Android Water Waves
 This Android version code of tutorial:
 http://gamedevelopment.tutsplus.com/tutorials/make-a-splash-with-2d-water-effects--gamedev-236
 
+How uou use it:
+http://habrahabr.ru/post/254287/
+
 Without use particle effects
 
 ```

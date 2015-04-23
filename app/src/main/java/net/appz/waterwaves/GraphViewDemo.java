@@ -38,7 +38,7 @@ public class GraphViewDemo extends Activity {
 
         water = new Water(this, displaySize);
 
-        graphView = new GraphView(this, water, rock, displaySize, "GraphViewDemo", null, null, GraphView.LINE);
+        graphView = new GraphView(this, water, rock, displaySize, GraphView.LINE);
 		setContentView(graphView);
         timer_interval = TIMER_INTERVAL;
 	}

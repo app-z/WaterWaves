@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Paint.Align;
 import android.graphics.Point;
 import android.util.Log;
 import android.view.View;
@@ -24,12 +23,9 @@ public class GraphView extends View {
     Water water;
     Rock rock;
     Point displaySize;
-    private String[] horlabels;
-	private String[] verlabels;
-	private String title;
 	private boolean type;
 
-	public GraphView(Context context, Water water, Rock rock, Point displaySize, String title, String[] horlabels, String[] verlabels, boolean type) {
+	public GraphView(Context context, Water water, Rock rock, Point displaySize, boolean type) {
 		super(context);
 		if (water == null)
             new IllegalArgumentException("Water is null!!");
@@ -38,18 +34,6 @@ public class GraphView extends View {
         this.rock = rock;
         this.displaySize = displaySize;
 
-		if (title == null)
-			title = "";
-		else
-			this.title = title;
-		if (horlabels == null)
-			this.horlabels = new String[0];
-		else
-			this.horlabels = horlabels;
-		if (verlabels == null)
-			this.verlabels = new String[0];
-		else
-			this.verlabels = verlabels;
 		this.type = type;
 		paint = new Paint();
 	}
@@ -65,32 +49,6 @@ public class GraphView extends View {
 		float diff = max - min;
 		float graphheight = height - (2 * border);
 		float graphwidth = width - (2 * border);
-
-		paint.setTextAlign(Align.LEFT);
-		int vers = verlabels.length - 1;
-		for (int i = 0; i < verlabels.length; i++) {
-			paint.setColor(Color.DKGRAY);
-			float y = ((graphheight / vers) * i) + border;
-			canvas.drawLine(horstart, y, width, y, paint);
-			paint.setColor(Color.WHITE);
-			canvas.drawText(verlabels[i], 0, y, paint);
-		}
-		int hors = horlabels.length - 1;
-		for (int i = 0; i < horlabels.length; i++) {
-			paint.setColor(Color.DKGRAY);
-			float x = ((graphwidth / hors) * i) + horstart;
-			canvas.drawLine(x, height - border, x, border, paint);
-			paint.setTextAlign(Align.CENTER);
-			if (i==horlabels.length-1)
-				paint.setTextAlign(Align.RIGHT);
-			if (i==0)
-				paint.setTextAlign(Align.LEFT);
-			paint.setColor(Color.WHITE);
-			canvas.drawText(horlabels[i], x, height - 4, paint);
-		}
-
-		paint.setTextAlign(Align.CENTER);
-		canvas.drawText(title, (graphwidth / 2) + horstart, border - 4, paint);
 
 		if (max != min) {
 			paint.setColor(Color.parseColor("#249ae6"));
