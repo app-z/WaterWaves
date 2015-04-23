@@ -1,6 +1,7 @@
 package net.appz.waterwaves;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,7 +19,7 @@ import android.view.MotionEvent;
 // http://habrahabr.ru/post/254287/
 public class GraphViewDemo extends Activity {
 
-    private final static int TIMER_INTERVAL = 40;
+    private final static int TIMER_INTERVAL = 35;
     private static final String TAG = GraphViewDemo.class.getSimpleName();
     private int timer_interval;
 
@@ -38,7 +39,7 @@ public class GraphViewDemo extends Activity {
 
         water = new Water(this, displaySize);
 
-        graphView = new GraphView(this, water, rock, displaySize, GraphView.Type.POLY);
+        graphView = new GraphView(this, water, rock, displaySize, GraphView.Type.POLY, Color.parseColor("#249ae6"));
 		setContentView(graphView);
         timer_interval = TIMER_INTERVAL;
 	}

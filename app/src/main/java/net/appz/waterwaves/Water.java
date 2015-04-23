@@ -8,7 +8,7 @@ import android.graphics.Point;
  */
 public class Water {
 
-    private final static int COLUMN_COUNT = 41;
+    private final static int COLUMN_COUNT = 51;
 
     private Context context;
     private Point displaySize;

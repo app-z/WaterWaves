@@ -20,21 +20,29 @@ public class GraphView extends View {
 	private Paint paint;
     private Water water;
     private Rock rock;
+    private int colorWaves;
     private Point displaySize;
 	private Type type;
 
-	public GraphView(Context context, Water water, Rock rock, Point displaySize, Type type) {
+    private Point[] pointsPoly = new Point[4];
+
+	public GraphView(Context context, Water water, Rock rock, Point displaySize, Type type, int colorWaves) {
 		super(context);
 		if (water == null)
             throw new IllegalArgumentException("Water is null!!");
         this.water = water;
 
+        this.colorWaves = colorWaves;
         this.rock = rock;
         this.displaySize = displaySize;
 
 		this.type = type;
 		paint = new Paint();
-	}
+
+        for (int i = 0; i < pointsPoly.length; i++){
+            pointsPoly[i] = new Point();
+        }
+    }
 
 	@Override
 	protected void onDraw(Canvas canvas) {
@@ -47,11 +55,6 @@ public class GraphView extends View {
 		float diff = max - min;
 		float graphheight = height - (2 * border);
 		//float graphwidth = width - (2 * border);
-        Point[] points = new Point[4];
-        for (int i = 0; i < points.length; i++){
-            points[i] = new Point();
-        }
-        int colorWaves = Color.parseColor("#249ae6");
 
 		if (max != min) {
 			paint.setColor(colorWaves);
@@ -69,11 +72,11 @@ public class GraphView extends View {
                         float rat1 = val1 / diff;
                         h1 = graphheight * rat1;
                     }
-                    points[0].set((int) (i * colwidth), (int) (- h + graphheight));
-                    points[1].set((int) ((i * colwidth) + colwidth), (int) (- h1 + graphheight));
-                    points[2].set((int) ((i * colwidth) + colwidth), (int) height);
-                    points[3].set((int) (i * colwidth), (int)height);
-                    drawPoly(canvas, colorWaves , points);
+                    pointsPoly[0].set((int) (i * colwidth), (int) (- h + graphheight));
+                    pointsPoly[1].set((int) ((i * colwidth) + colwidth), (int) (- h1 + graphheight));
+                    pointsPoly[2].set((int) ((i * colwidth) + colwidth), (int) height);
+                    pointsPoly[3].set((int) (i * colwidth), (int)height);
+                    drawPoly(canvas, colorWaves , pointsPoly);
 				}
             } else if (type == Type.BAR) {
                 float datalength = water.size();
