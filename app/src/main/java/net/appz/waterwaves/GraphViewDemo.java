@@ -19,7 +19,7 @@ import android.view.MotionEvent;
 // http://habrahabr.ru/post/254287/
 public class GraphViewDemo extends Activity {
 
-    private final static int TIMER_INTERVAL = 35;
+    private final static int TIMER_INTERVAL = 30;
     private static final String TAG = GraphViewDemo.class.getSimpleName();
     private int timer_interval;
 

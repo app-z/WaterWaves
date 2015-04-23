@@ -76,7 +76,7 @@ public class GraphView extends View {
                     pointsPoly[1].set((int) ((i * colwidth) + colwidth), (int) (- h1 + graphheight));
                     pointsPoly[2].set((int) ((i * colwidth) + colwidth), (int) height);
                     pointsPoly[3].set((int) (i * colwidth), (int)height);
-                    drawPoly(canvas, colorWaves , pointsPoly);
+                    drawPoly(canvas, pointsPoly, paint);
 				}
             } else if (type == Type.BAR) {
                 float datalength = water.size();
@@ -114,19 +114,17 @@ public class GraphView extends View {
      * Draw polygon
      *
      * @param canvas The canvas to draw on
-     * @param color  Integer representing a fill color (see http://developer.android.com/reference/android/graphics/Color.html)
      * @param points Polygon corner points
+     * @param paint Paint
      */
-    private void drawPoly(Canvas canvas, int color, Point[] points) {
+    private void drawPoly(Canvas canvas, Point[] points, Paint paint) {
         // line at minimum...
         if (points.length < 2) {
             return;
         }
 
-        // paint
-        Paint polyPaint = new Paint();
-        polyPaint.setColor(color);
-        polyPaint.setStyle(Paint.Style.FILL);
+        // paint style
+        paint.setStyle(Paint.Style.FILL);
 
         // path
         Path polyPath = new Path();
@@ -139,7 +137,7 @@ public class GraphView extends View {
         polyPath.lineTo(points[0].x, points[0].y);
 
         // draw
-        canvas.drawPath(polyPath, polyPaint);
+        canvas.drawPath(polyPath, paint);
     }
 
 	private float getMax() {
