@@ -15,15 +15,10 @@ public class Rock {
     public void Update(Water water)
     {
         if (Position.y > water.GetHeight(Position.x)) {
-            Velocity.x *= 0.84f;
-            Velocity.y *= 0.84f;
+            Velocity.mul(0.84f);
         }
 
-        Position.x += Velocity.x;
-        Position.y += Velocity.y;
-
-        Velocity.x += Gravity.x;
-        Velocity.y += Gravity.y;
-
+        Position.add(Velocity);
+        Velocity.add(Gravity);
     }
 }

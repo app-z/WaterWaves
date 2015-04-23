@@ -67,9 +67,6 @@ public class Water {
         return columns.length;
     }
 
-//    float SCREEN_W = 800f;
-
-
     public static float clamp(float value, float min, float max) {
         value = (value > max) ? max : value;
         value = (value < min) ? min : value;
@@ -78,7 +75,6 @@ public class Water {
 
     public void Splash(float xPosition, float speed)
     {
-
         int index = (int)clamp(xPosition / getScale(), 0, columns.length - 1);
         for (int i = Math.max(0, index - 0); i < Math.min(columns.length - 1, index + 1); i++)
             columns[index].Speed = speed;
@@ -140,10 +136,5 @@ public class Water {
                     columns[i + 1].Height += rDeltas[i];
             }
         }
-
-        //Log.i(">>>", columns + " : " + Arrays.toString(columns));
-
     }
-
-
 }
