@@ -8,7 +8,7 @@ import android.graphics.Point;
  */
 public class Water {
 
-    private final static int COLUMN_COUNT = 301;
+    private final static int COLUMN_COUNT = 41;
 
     private Context context;
     private Point displaySize;
@@ -109,8 +109,8 @@ public class Water {
 
     public void Update()
     {
-        for (int i = 0; i < columns.length; i++)
-            columns[i].Update(Dampening, Tension);
+        for (WaterColumn column : columns)
+            column.Update(Dampening, Tension);
 
         float[] lDeltas = new float[columns.length];
         float[] rDeltas = new float[columns.length];

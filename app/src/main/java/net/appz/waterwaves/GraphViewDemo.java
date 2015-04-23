@@ -38,7 +38,7 @@ public class GraphViewDemo extends Activity {
 
         water = new Water(this, displaySize);
 
-        graphView = new GraphView(this, water, rock, displaySize, GraphView.LINE);
+        graphView = new GraphView(this, water, rock, displaySize, GraphView.Type.POLY);
 		setContentView(graphView);
         timer_interval = TIMER_INTERVAL;
 	}
@@ -50,8 +50,8 @@ public class GraphViewDemo extends Activity {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        float newX = 0;
-        float newY = 0;
+        float newX;
+        float newY;
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
             oldX = event.getX();
             oldY = event.getY();
@@ -63,9 +63,7 @@ public class GraphViewDemo extends Activity {
             graphView.setRock(rock);
 
             Log.i(TAG, "oldX = " + oldX + " : oldY = " + oldY + " : x = " + newX + " : y = " + newY);
-
         }
-
         return false;
     }
 
